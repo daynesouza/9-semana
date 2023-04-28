@@ -1,0 +1,50 @@
+@import '../styles/variaveis';
+
+.sorteados{
+    align-items: center;
+    background-color: $cinzaEscuro;
+    color: $amarelo;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 1rem;
+    width: 100%;
+    min-height: 20vh;
+}
+
+.title{
+    color: $amarelo;
+    font-size: 36px;
+}
+.sorteados{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    row-gap: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+.sorteado{
+    color: $preto;
+    background-color: $branco;
+    font-size: 36px;
+    list-style: none;
+    min-width: 60%;
+}
+
+.BotaoVoltar{
+    background-color: $amarelo;
+    border-style: none;
+    border-radius: 5px;
+    height: 3rem;
+    width: 10rem;
+}
+
+//desktop
+@media screen and (min-width: 1024px) {
+    .sorteados{
+        width: 50%;
+        border-radius: 10px;
+    }
+}

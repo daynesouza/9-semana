@@ -1,0 +1,42 @@
+@import '../../styles/variaveis';
+
+.participantes{
+    align-items: center;
+    background-color: $cinzaEscuro;
+    color: $amarelo;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 1rem;
+    width: 100%;
+    min-height: 20vh;
+}
+
+.participantes__titulo{
+    color: $amarelo;
+    font-size: 36px;
+}
+.participantes__lista{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    row-gap: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+.participante{
+    color: $preto;
+    background-color: $branco;
+    font-size: 36px;
+    list-style: none;
+    min-width: 60%;
+}
+
+//desktop
+@media screen and (min-width: 1024px) {
+    .participantes{
+        width: 50%;
+        border-radius: 10px;
+    }
+}

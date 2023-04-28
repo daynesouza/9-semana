@@ -1,0 +1,11 @@
+@import '../styles/variaveis';
+
+.home{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    row-gap: 1rem;
+    width: 100%;
+}

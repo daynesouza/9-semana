@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import 'normalize.css';
-import Router from './routes';
+import './index.scss'
+import Router from './Routes';
 import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(
