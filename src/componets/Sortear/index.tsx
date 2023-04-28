@@ -10,6 +10,10 @@ export default function Sortear(){
     
     const sorteio = useSorteio();
 
+    const validarCampo = (evento:React.ChangeEvent<HTMLInputElement>) => {
+        setQuantidade(evento.target.value)
+    }
+
     const realizarSorteio = () => {
         if(quantidade === ''){
             setMensagemErro('Digite um valor!')
@@ -30,12 +34,12 @@ export default function Sortear(){
                     name='sorteados'
                     className={s.sortear__input} 
                     value={quantidade}
-                    onChange={ evento => setQuantidade(evento.target.value)}
+                    onChange={ evento => validarCampo(evento)}
                     type="text"
                     placeholder='ex: 1'
                     />
             </div>
-            <button className={s.button} onClick={ realizarSorteio }>Sortear</button>
+            <button className={s.button} onClick={ realizarSorteio } disabled={!quantidade}>Sortear</button>
             { mensagemErro && <p className={s.erro} role='alert'>{mensagemErro}</p>}
         </div>
     )

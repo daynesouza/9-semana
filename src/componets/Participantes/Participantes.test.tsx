@@ -3,6 +3,14 @@ import { RecoilRoot } from "recoil"
 import Participantes from "componets/Participantes"
 import { useListaParticipantes } from "state/hooks/useListaParticipantes"
 
+const mockNavegacao = jest.fn()
+
+jest.mock('react-router-dom', () => {
+    return {
+        useNavigate: () => mockNavegacao
+    }
+})
+
 jest.mock('../../state/hooks/useListaParticipantes', () => {
     return {
         useListaParticipantes: jest.fn()

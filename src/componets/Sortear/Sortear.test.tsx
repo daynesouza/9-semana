@@ -3,6 +3,14 @@ import { RecoilRoot } from "recoil";
 import { useListaParticipantes } from "state/hooks/useListaParticipantes"
 import Sortear from "./index";
 
+const mockNavegacao = jest.fn()
+
+jest.mock('react-router-dom', () => {
+    return {
+        useNavigate: () => mockNavegacao
+    }
+})
+
 jest.mock('../../state/hooks/useListaParticipantes', () => {
     return {
         useListaParticipantes: jest.fn()
@@ -21,32 +29,18 @@ describe('Sorteio', () => {
                 <Sortear />
             </RecoilRoot>
         )
-
-        const input = screen.getByPlaceholderText('ex: 1')
+        
         const botao = screen.getByRole('button')
+        const input = screen.getByPlaceholderText('ex: 1')
 
-        expect(input).toBeInTheDocument;
+         fireEvent.change(input, {
+            target: {
+                value: ''
+            }
+        })    
+        
         expect(botao).toBeDisabled;
         
-    })
-
-    test('Quando o input está vazio, não deixar sortear', () => {
-        render(
-            <RecoilRoot>
-                <Sortear />
-            </RecoilRoot>
-        )
-
-        const input = screen.getByPlaceholderText('ex: 1')
-        const botao = screen.getByRole('button')
-
-        fireEvent.change(input, {
-            target: {
-                value: 1
-            }
-        });
-        
-        fireEvent.click(botao);        
     })
 
     test('Sortear se o número for menor ou igual ao número de sorteados', () => {
@@ -65,7 +59,7 @@ describe('Sorteio', () => {
             }
         })
 
-        fireEvent.click(botao);          
+        fireEvent.click(botao);
     })
 
     test('Não sortear se o número for maior ao número de sorteados', () => {
@@ -76,15 +70,18 @@ describe('Sorteio', () => {
         )
 
         const input = screen.getByPlaceholderText('ex: 1')
-        const botao = screen.getByRole('button')
+        const botao = screen.getByRole('button')        
         
         fireEvent.change(input, {
             target: {
                 value: 4
             }
         })
+        fireEvent.click(botao);
 
-        expect(botao).toBeDisabled;
+        const erro = screen.getByRole('alert')
+        expect(erro).toBeInTheDocument;
+        
     })
 
     test('A mensagem de erro de ve sumir da tela após 5 segundos', () => {
@@ -98,5 +95,24 @@ describe('Sorteio', () => {
         const input = screen.getByPlaceholderText('ex: 1')
         const botao = screen.getByRole('button')
         
+
+        fireEvent.change(input, {
+            target: {
+                value: 5
+            }
+        });
+        fireEvent.click(botao);
+
+        fireEvent.click(botao);
+
+        let mensagemErro = screen.queryByRole('alert');
+        expect(mensagemErro).toBeInTheDocument();
+
+        act( () => {
+            jest.runAllTimers()
+        });
+
+        mensagemErro = screen.queryByRole('alert');
+        expect(mensagemErro).toBeNull();
     })
 })

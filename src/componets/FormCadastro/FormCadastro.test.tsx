@@ -2,6 +2,14 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import FormCadastro from "componets/FormCadastro";
 import { RecoilRoot } from "recoil";
 
+const mockNavegacao = jest.fn()
+
+jest.mock('react-router-dom', () => {
+    return {
+        useNavigate: () => mockNavegacao
+    }
+})
+
 //Jest
 describe('o comportamento do Formulario.tsx', () => {
     test('Quando o input está vazio, novos participantes não podem ser adicionados', () => {

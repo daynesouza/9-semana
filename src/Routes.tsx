@@ -1,6 +1,6 @@
 import Home from 'pages/Home';
 import PaginaPadrao from 'pages/PaginaPadrao';
-import Sorteados from 'pages/Sorteiados';
+import Sorteados from 'pages/Sorteados';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function AppRouter() {
